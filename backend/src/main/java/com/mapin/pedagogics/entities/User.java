@@ -55,15 +55,15 @@ public class User implements UserDetails, Serializable {
 			inverseJoinColumns = @JoinColumn(name = "role_id")) // ref a classe da associação
 	private Set<Role> roles = new HashSet<>();
 	
-	@OneToMany(mappedBy = "aluno")
+	@OneToMany(mappedBy = "student")
+	private List<Comment> comments = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "student")
 	private List<Notification> notifications = new ArrayList<>();
-
-	public User() {
-	}
-
-	public Set<Role> getRoles() {
-		return roles;
-	}
+	
+	@ManyToMany
+	@JoinTable(name = "tb_student_study_class", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "study_class_id"))
+	private Set<StudyClass> studyClasses = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -71,22 +71,6 @@ public class User implements UserDetails, Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public LocalDate getEnrollmentDate() {
@@ -111,6 +95,38 @@ public class User implements UserDetails, Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+
+	public Set<StudyClass> getStudyClasses() {
+		return studyClasses;
 	}
 
 	@Override

@@ -13,8 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_notification")
-public class Notification implements Serializable {
+@Table(name = "tb_comment")
+public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -25,9 +25,11 @@ public class Notification implements Serializable {
 	private LocalDate publicationDate;
 
 	@Column(columnDefinition = "TEXT")
-	private String message;
+	private String comment;
 
-	private boolean read = false;
+	@ManyToOne
+	@JoinColumn(name = "study_class_id")
+	private StudyClass studyClass;
 
 	@ManyToOne
 	@JoinColumn(name = "student_id")
@@ -49,20 +51,20 @@ public class Notification implements Serializable {
 		this.publicationDate = publicationDate;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
-	public boolean isRead() {
-		return read;
+	public StudyClass getStudyClass() {
+		return studyClass;
 	}
 
-	public void setRead(boolean read) {
-		this.read = read;
+	public void setStudyClass(StudyClass studyClass) {
+		this.studyClass = studyClass;
 	}
 
 	public User getStudent() {
@@ -89,7 +91,7 @@ public class Notification implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Notification other = (Notification) obj;
+		Comment other = (Comment) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
