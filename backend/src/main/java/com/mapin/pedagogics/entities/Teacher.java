@@ -9,16 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.checkerframework.common.aliasing.qual.Unique;
 
 @Entity
-@Table(name = "tb_topic")
-public class Topic implements Serializable {
+@Table(name = "teacher")
+public class Teacher implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,21 +24,17 @@ public class Topic implements Serializable {
 	private Long id;
 
 	@Column(columnDefinition = "TEXT")
-	private String imgTopicUrl;
+	private String imgTeacherUrl;
 
 	@Column(unique = true)
 	@Unique
-	private String title;
+	private String name;
 
 	@Column(columnDefinition = "TEXT")
-	private String description;
+	private String resume;
 
-	@ManyToOne
-	@JoinColumn(name = "subject_id")
-	private Subject subject;
-	
-	@OneToMany(mappedBy = "topic")
-	private List<StudyClass> studyClasses = new ArrayList<>();
+	@OneToMany(mappedBy = "teacher")
+	private List<Subject> subjects = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -50,36 +44,32 @@ public class Topic implements Serializable {
 		this.id = id;
 	}
 
-	public String getImgTopicUrl() {
-		return imgTopicUrl;
+	public String getImgTeacherUrl() {
+		return imgTeacherUrl;
 	}
 
-	public void setImgTopicUrl(String imgTopicUrl) {
-		this.imgTopicUrl = imgTopicUrl;
+	public void setImgTeacherUrl(String imgTeacherUrl) {
+		this.imgTeacherUrl = imgTeacherUrl;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getResume() {
+		return resume;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setResume(String resume) {
+		this.resume = resume;
 	}
 
-	public Subject getSubject() {
-		return subject;
-	}
-
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	public List<Subject> getSubjects() {
+		return subjects;
 	}
 
 	@Override
@@ -98,7 +88,7 @@ public class Topic implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Topic other = (Topic) obj;
+		Teacher other = (Teacher) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
