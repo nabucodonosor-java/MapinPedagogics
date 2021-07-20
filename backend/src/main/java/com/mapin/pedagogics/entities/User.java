@@ -36,7 +36,7 @@ public class User implements UserDetails, Serializable {
 	private Long id;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private LocalDate enrollmentDate;
+	private LocalDate enrollmentDate = LocalDate.now();
 	
 	@Column(columnDefinition = "TEXT")
 	private String imgUserUrl;
@@ -64,6 +64,9 @@ public class User implements UserDetails, Serializable {
 	@ManyToMany
 	@JoinTable(name = "tb_student_study_class", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "study_class_id"))
 	private Set<StudyClass> studyClasses = new HashSet<>();
+	
+	@OneToMany(mappedBy = "student")
+	private List<Test> tests = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -128,6 +131,10 @@ public class User implements UserDetails, Serializable {
 	public Set<StudyClass> getStudyClasses() {
 		return studyClasses;
 	}
+	
+	public List<Test> getTests() {
+		return tests;
+	}
 
 	@Override
 	public int hashCode() {
@@ -183,5 +190,4 @@ public class User implements UserDetails, Serializable {
 	public boolean isEnabled() {
 		return true;
 	}
-
 }

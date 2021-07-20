@@ -36,6 +36,10 @@ public class Test implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "tb_test_question", joinColumns = @JoinColumn(name = "test_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
 	private Set<Question> questions = new HashSet<>();
+	
+	@ManyToOne
+	@JoinColumn(name = "student_id")
+	private User student;
 
 	public Long getId() {
 		return id;
@@ -72,6 +76,14 @@ public class Test implements Serializable {
 	public Set<Question> getQuestions() {
 		return questions;
 	}
+	
+	public User getStudent() {
+		return student;
+	}
+
+	public void setStudent(User student) {
+		this.student = student;
+	}
 
 	@Override
 	public int hashCode() {
@@ -97,5 +109,4 @@ public class Test implements Serializable {
 			return false;
 		return true;
 	}
-
 }
