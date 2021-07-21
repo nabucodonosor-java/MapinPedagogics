@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.checkerframework.common.aliasing.qual.Unique;
 
 @Entity
-@Table(name = "teacher")
+@Table(name = "tb_teacher")
 public class Teacher implements Serializable {
 	private static final long serialVersionUID = 1L;
 

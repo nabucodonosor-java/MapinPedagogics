@@ -31,8 +31,6 @@ public class UserDto implements Serializable {
 
 	private Set<RoleDto> roles = new HashSet<>();
 
-	private List<CommentDto> comments = new ArrayList<>();
-
 	private List<NotificationDto> notifications = new ArrayList<>();
 
 	private Set<StudyClassDto> studyClasses = new HashSet<>();
@@ -49,7 +47,6 @@ public class UserDto implements Serializable {
 		name = entity.getName();
 		email = entity.getEmail();
 		entity.getRoles().forEach(r -> this.roles.add(new RoleDto(r)));
-		entity.getComments().forEach(c -> this.comments.add(new CommentDto(c)));
 		entity.getNotifications().forEach(n -> this.notifications.add(new NotificationDto(n)));
 		entity.getStudyClasses().forEach(s -> this.studyClasses.add(new StudyClassDto(s)));
 		entity.getTests().forEach(t -> this.tests.add(new TestDto(t)));
@@ -97,10 +94,6 @@ public class UserDto implements Serializable {
 
 	public Set<RoleDto> getRoles() {
 		return roles;
-	}
-
-	public List<CommentDto> getComments() {
-		return comments;
 	}
 
 	public List<NotificationDto> getNotifications() {

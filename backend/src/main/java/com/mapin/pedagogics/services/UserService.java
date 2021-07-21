@@ -17,18 +17,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mapin.pedagogics.dto.CommentDto;
 import com.mapin.pedagogics.dto.NotificationDto;
 import com.mapin.pedagogics.dto.RoleDto;
 import com.mapin.pedagogics.dto.StudyClassDto;
 import com.mapin.pedagogics.dto.UserDto;
 import com.mapin.pedagogics.dto.UserInsertDto;
-import com.mapin.pedagogics.entities.Comment;
 import com.mapin.pedagogics.entities.Notification;
 import com.mapin.pedagogics.entities.Role;
 import com.mapin.pedagogics.entities.StudyClass;
 import com.mapin.pedagogics.entities.User;
-import com.mapin.pedagogics.repositories.CommentRepository;
 import com.mapin.pedagogics.repositories.NotificationRepository;
 import com.mapin.pedagogics.repositories.RoleRepository;
 import com.mapin.pedagogics.repositories.StudyClassRepository;
@@ -46,9 +43,6 @@ public class UserService implements UserDetailsService {
 	
 	@Autowired
 	private RoleRepository roleRepository;
-	
-	@Autowired
-	private CommentRepository commentRepository;
 	
 	@Autowired
 	private NotificationRepository notificationRepository;
@@ -112,18 +106,12 @@ public class UserService implements UserDetailsService {
 		entity.setPassword(dto.getPassword());
 		
 		entity.getRoles().clear();
-		entity.getComments().clear();
 		entity.getNotifications().clear();
 		entity.getStudyClasses().clear();
 		
 		for (RoleDto roleDto : dto.getRoles()) {
 			Role role = (Role) roleRepository.getOne(roleDto.getId());
 			entity.getRoles().add(role);
-		}
-		
-		for (CommentDto commentDto : dto.getComments()) {
-			Comment comment = commentRepository.getOne(commentDto.getId());
-			entity.getComments().add(comment);
 		}
 		
 		for (NotificationDto notificationDto : dto.getNotifications()) {

@@ -56,9 +56,6 @@ public class User implements UserDetails, Serializable {
 	private Set<Role> roles = new HashSet<>();
 	
 	@OneToMany(mappedBy = "student")
-	private List<Comment> comments = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "student")
 	private List<Notification> notifications = new ArrayList<>();
 	
 	@ManyToMany
@@ -118,10 +115,6 @@ public class User implements UserDetails, Serializable {
 
 	public Set<Role> getRoles() {
 		return roles;
-	}
-
-	public List<Comment> getComments() {
-		return comments;
 	}
 
 	public List<Notification> getNotifications() {
