@@ -21,11 +21,7 @@ public class SubjectDto implements Serializable {
 
 	private TeacherDto teacher;
 
-	private List<StudyClassDto> studyClasses = new ArrayList<>();
-
 	private List<TestDto> tests = new ArrayList<>();
-
-	private List<TopicDto> topics = new ArrayList<>();
 
 	public SubjectDto() {
 	}
@@ -38,9 +34,7 @@ public class SubjectDto implements Serializable {
 		description = entity.getDescription();
 		trail = new TrailDto(entity.getTrail());
 		teacher = new TeacherDto(entity.getTeacher());
-		entity.getStudyClasses().forEach(sc -> this.studyClasses.add(new StudyClassDto(sc)));
 		entity.getTests().forEach(t -> this.tests.add(new TestDto(t)));
-		entity.getTopics().forEach(t -> this.topics.add(new TopicDto(t)));
 	}
 
 	public Long getId() {
@@ -91,16 +85,8 @@ public class SubjectDto implements Serializable {
 		this.teacher = teacher;
 	}
 
-	public List<StudyClassDto> getStudyClasses() {
-		return studyClasses;
-	}
-
 	public List<TestDto> getTests() {
 		return tests;
-	}
-
-	public List<TopicDto> getTopics() {
-		return topics;
 	}
 
 }

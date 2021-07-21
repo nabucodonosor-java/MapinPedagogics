@@ -17,7 +17,6 @@ public class TrailDto implements Serializable {
 
 	private String description;
 
-	private List<SubjectDto> subjects = new ArrayList<>();
 
 	public TrailDto() {
 	}
@@ -27,7 +26,6 @@ public class TrailDto implements Serializable {
 		imgTrailUrl = entity.getImgTrailUrl();
 		name = entity.getName();
 		description = entity.getDescription();
-		entity.getSubjects().forEach(s -> this.subjects.add(new SubjectDto(s)));
 	}
 
 	public Long getId() {
@@ -60,10 +58,6 @@ public class TrailDto implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public List<SubjectDto> getSubjects() {
-		return subjects;
 	}
 
 }

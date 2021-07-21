@@ -17,8 +17,6 @@ public class TeacherDto implements Serializable {
 
 	private String resume;
 
-	private List<SubjectDto> subjects = new ArrayList<>();
-
 	public TeacherDto() {
 	}
 
@@ -27,7 +25,6 @@ public class TeacherDto implements Serializable {
 		imgTeacherUrl = entity.getImgTeacherUrl();
 		name = entity.getName();
 		resume = entity.getResume();
-		entity.getSubjects().forEach(t -> this.subjects.add(new SubjectDto(t)));
 	}
 
 	public Long getId() {
@@ -60,10 +57,6 @@ public class TeacherDto implements Serializable {
 
 	public void setResume(String resume) {
 		this.resume = resume;
-	}
-
-	public List<SubjectDto> getSubjects() {
-		return subjects;
 	}
 
 }

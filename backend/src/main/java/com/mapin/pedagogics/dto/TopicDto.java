@@ -19,8 +19,6 @@ public class TopicDto implements Serializable {
 
 	private SubjectDto subject;
 
-	private List<StudyClassDto> studyClasses = new ArrayList<>();
-
 	private List<QuestionDto> questions = new ArrayList<>();
 
 	public TopicDto() {
@@ -32,7 +30,6 @@ public class TopicDto implements Serializable {
 		title = entity.getTitle();
 		description = entity.getDescription();
 		subject = new SubjectDto(entity.getSubject());
-		entity.getStudyClasses().forEach(sc -> this.studyClasses.add(new StudyClassDto(sc)));
 		entity.getQuestions().forEach(q -> this.questions.add(new QuestionDto(q)));
 	}
 
@@ -74,10 +71,6 @@ public class TopicDto implements Serializable {
 
 	public void setSubject(SubjectDto subject) {
 		this.subject = subject;
-	}
-
-	public List<StudyClassDto> getStudyClasses() {
-		return studyClasses;
 	}
 
 	public List<QuestionDto> getQuestions() {
