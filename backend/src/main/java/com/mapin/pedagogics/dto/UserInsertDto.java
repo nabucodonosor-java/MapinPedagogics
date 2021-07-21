@@ -17,7 +17,7 @@ public class UserInsertDto implements Serializable {
 
 	private LocalDate enrollmentDate;
 
-	private String imgUrl;
+	private String imgUrl = "https://mapin-pedagogics.s3.sa-east-1.amazonaws.com/user-padrao.png";
 
 	@NotBlank(message = "Campo obrigatório")
 	private String name;
@@ -29,16 +29,18 @@ public class UserInsertDto implements Serializable {
 	private String password;
 
 	private Set<RoleDto> roles = new HashSet<>();
-
-	private RoleDto roleDto = new RoleDto("STUDENT");
-
+	
+	RoleDto roleDto = new RoleDto(1L, "ROLE_STUDENT");
+	
 	public UserInsertDto() {
 	}
 
 	public UserInsertDto(User entity) {
 		id = entity.getId();
-		enrollmentDate = LocalDate.now();
-		imgUrl = "https://mapin-pedagogics.s3.sa-east-1.amazonaws.com/user-padrao.png";
+		enrollmentDate = entity.getEnrollmentDate();
+		imgUrl = entity.getImgUrl();
+		name = entity.getName();
+		email = entity.getEmail();
 		password = entity.getPassword();
 		this.roles.add(roleDto);
 	}

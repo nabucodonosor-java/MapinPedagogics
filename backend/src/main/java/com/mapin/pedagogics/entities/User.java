@@ -36,7 +36,7 @@ public class User implements UserDetails, Serializable {
 	private Long id;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private LocalDate enrollmentDate;
+	private LocalDate enrollmentDate = LocalDate.now();
 	
 	@Column(columnDefinition = "TEXT")
 	private String imgUrl;
