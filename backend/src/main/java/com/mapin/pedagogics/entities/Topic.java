@@ -44,6 +44,14 @@ public class Topic implements Serializable {
 	
 	@OneToMany(mappedBy = "topic")
 	private List<Question> questions = new ArrayList<>();
+	
+	public List<StudyClass> getStudyClasses() {
+		return studyClasses;
+	}
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
 
 	public Long getId() {
 		return id;
