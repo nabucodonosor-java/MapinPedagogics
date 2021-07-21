@@ -1,8 +1,6 @@
 package com.mapin.pedagogics.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.mapin.pedagogics.entities.Trail;
 

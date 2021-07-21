@@ -21,7 +21,7 @@ public class UserDto implements Serializable {
 
 	private LocalDate enrollmentDate;
 
-	private String imgUserUrl;
+	private String imgUrl;
 
 	@NotBlank(message = "Campo obrigatório")
 	private String name;
@@ -43,7 +43,7 @@ public class UserDto implements Serializable {
 	public UserDto(User entity) {
 		id = entity.getId();
 		enrollmentDate = entity.getEnrollmentDate();
-		imgUserUrl = entity.getImgUserUrl();
+		imgUrl = entity.getImgUrl();
 		name = entity.getName();
 		email = entity.getEmail();
 		entity.getRoles().forEach(r -> this.roles.add(new RoleDto(r)));
@@ -68,12 +68,12 @@ public class UserDto implements Serializable {
 		this.enrollmentDate = enrollmentDate;
 	}
 
-	public String getImgUserUrl() {
-		return imgUserUrl;
+	public String getImgUrl() {
+		return imgUrl;
 	}
 
-	public void setImgUserUrl(String imgUserUrl) {
-		this.imgUserUrl = imgUserUrl;
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	public String getName() {

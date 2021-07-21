@@ -1,8 +1,6 @@
 package com.mapin.pedagogics.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.mapin.pedagogics.entities.Subject;
 
@@ -21,8 +19,6 @@ public class SubjectDto implements Serializable {
 
 	private TeacherDto teacher;
 
-	private List<TestDto> tests = new ArrayList<>();
-
 	public SubjectDto() {
 	}
 
@@ -34,7 +30,6 @@ public class SubjectDto implements Serializable {
 		description = entity.getDescription();
 		trail = new TrailDto(entity.getTrail());
 		teacher = new TeacherDto(entity.getTeacher());
-		entity.getTests().forEach(t -> this.tests.add(new TestDto(t)));
 	}
 
 	public Long getId() {
@@ -83,10 +78,6 @@ public class SubjectDto implements Serializable {
 
 	public void setTeacher(TeacherDto teacher) {
 		this.teacher = teacher;
-	}
-
-	public List<TestDto> getTests() {
-		return tests;
 	}
 
 }

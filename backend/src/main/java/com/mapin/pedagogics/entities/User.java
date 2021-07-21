@@ -36,10 +36,10 @@ public class User implements UserDetails, Serializable {
 	private Long id;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private LocalDate enrollmentDate = LocalDate.now();
+	private LocalDate enrollmentDate;
 	
 	@Column(columnDefinition = "TEXT")
-	private String imgUserUrl;
+	private String imgUrl;
 
 	@Column(unique = true)
 	@Unique
@@ -81,12 +81,12 @@ public class User implements UserDetails, Serializable {
 		this.enrollmentDate = enrollmentDate;
 	}
 
-	public String getImgUserUrl() {
-		return imgUserUrl;
+	public String getImgUrl() {
+		return imgUrl;
 	}
 
-	public void setImgUserUrl(String imgUserUrl) {
-		this.imgUserUrl = imgUserUrl;
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	public String getName() {

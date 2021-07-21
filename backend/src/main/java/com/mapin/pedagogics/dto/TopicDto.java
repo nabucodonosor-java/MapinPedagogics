@@ -1,8 +1,6 @@
 package com.mapin.pedagogics.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.mapin.pedagogics.entities.Topic;
 
@@ -17,10 +15,6 @@ public class TopicDto implements Serializable {
 
 	private String description;
 
-	private SubjectDto subject;
-
-	private List<QuestionDto> questions = new ArrayList<>();
-
 	public TopicDto() {
 	}
 
@@ -29,8 +23,6 @@ public class TopicDto implements Serializable {
 		imgTopicUrl = entity.getImgTopicUrl();
 		title = entity.getTitle();
 		description = entity.getDescription();
-		subject = new SubjectDto(entity.getSubject());
-		entity.getQuestions().forEach(q -> this.questions.add(new QuestionDto(q)));
 	}
 
 	public Long getId() {
@@ -63,18 +55,6 @@ public class TopicDto implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public SubjectDto getSubject() {
-		return subject;
-	}
-
-	public void setSubject(SubjectDto subject) {
-		this.subject = subject;
-	}
-
-	public List<QuestionDto> getQuestions() {
-		return questions;
 	}
 
 }

@@ -12,6 +12,10 @@ public class RoleDto implements Serializable {
 
 	public RoleDto() {
 	}
+	
+	public RoleDto(String authority) {
+		this.authority = authority;
+	}
 
 	public RoleDto(Role role) {
 		id = role.getId();

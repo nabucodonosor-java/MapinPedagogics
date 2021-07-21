@@ -1,12 +1,12 @@
-INSERT INTO tb_user (enrollment_Date, img_User_Url, name, email, password) VALUES 
+INSERT INTO tb_user (enrollment_Date, img_Url, name, email, password) VALUES 
 (TIMESTAMP WITH TIME ZONE '2020-11-20T03:00:00Z', 'https://mapin-pedagogics.s3.sa-east-1.amazonaws.com/user-padrao.png', 'Aluno Teste',
 'aluno@mapin.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 
-INSERT INTO tb_user (enrollment_Date, img_User_Url, name, email, password) VALUES 
+INSERT INTO tb_user (enrollment_Date, img_Url, name, email, password) VALUES 
 (TIMESTAMP WITH TIME ZONE '2020-10-20T03:00:00Z', 'https://mapin-pedagogics.s3.sa-east-1.amazonaws.com/user-padrao.png', 'Professor Teste',
 'professor@mapin.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 
-INSERT INTO tb_user (enrollment_Date, img_User_Url, name, email, password) VALUES 
+INSERT INTO tb_user (enrollment_Date, img_Url, name, email, password) VALUES 
 (TIMESTAMP WITH TIME ZONE '2020-09-20T03:00:00Z', 'https://mapin-pedagogics.s3.sa-east-1.amazonaws.com/user-padrao.png', 'Admin',
 'admin@mapin.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG');
 

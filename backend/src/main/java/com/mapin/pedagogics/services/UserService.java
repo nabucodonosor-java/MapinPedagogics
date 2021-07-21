@@ -17,18 +17,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mapin.pedagogics.dto.NotificationDto;
-import com.mapin.pedagogics.dto.RoleDto;
-import com.mapin.pedagogics.dto.StudyClassDto;
 import com.mapin.pedagogics.dto.UserDto;
 import com.mapin.pedagogics.dto.UserInsertDto;
-import com.mapin.pedagogics.entities.Notification;
-import com.mapin.pedagogics.entities.Role;
-import com.mapin.pedagogics.entities.StudyClass;
 import com.mapin.pedagogics.entities.User;
-import com.mapin.pedagogics.repositories.NotificationRepository;
-import com.mapin.pedagogics.repositories.RoleRepository;
-import com.mapin.pedagogics.repositories.StudyClassRepository;
 import com.mapin.pedagogics.repositories.UserRepository;
 import com.mapin.pedagogics.services.exceptions.DatabaseException;
 import com.mapin.pedagogics.services.exceptions.ResourceNotFoundException;
@@ -40,15 +31,6 @@ public class UserService implements UserDetailsService {
 	
 	@Autowired
 	private UserRepository repository;
-	
-	@Autowired
-	private RoleRepository roleRepository;
-	
-	@Autowired
-	private NotificationRepository notificationRepository;
-	
-	@Autowired
-	private StudyClassRepository studyClassRepository;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -100,29 +82,10 @@ public class UserService implements UserDetailsService {
 	}
 	
 	private void copyDtoToEntity(UserInsertDto dto, User entity) {
-		entity.setImgUserUrl(dto.getImgUserUrl());
+		entity.setImgUrl(dto.getImgUrl());
 		entity.setName(dto.getName());
 		entity.setEmail(dto.getEmail());
 		entity.setPassword(dto.getPassword());
-		
-		entity.getRoles().clear();
-		entity.getNotifications().clear();
-		entity.getStudyClasses().clear();
-		
-		for (RoleDto roleDto : dto.getRoles()) {
-			Role role = (Role) roleRepository.getOne(roleDto.getId());
-			entity.getRoles().add(role);
-		}
-		
-		for (NotificationDto notificationDto : dto.getNotifications()) {
-			Notification notification = notificationRepository.getOne(notificationDto.getId());
-			entity.getNotifications().add(notification);
-		}
-		
-		for (StudyClassDto studyClassDto : dto.getStudyClasses()) {
-			StudyClass studyClass = studyClassRepository.getOne(studyClassDto.getId());
-			entity.getStudyClasses().add(studyClass);
-		}
 	}
 
 	@Override
