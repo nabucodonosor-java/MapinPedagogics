@@ -1,14 +1,11 @@
 package com.mapin.pedagogics.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,9 +17,6 @@ public class Role implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String authority;
-
-	@ManyToMany(mappedBy = "roles")
-	private Set<User> usuarios = new HashSet<>();
 
 	public Role() {
 	}
@@ -45,10 +39,6 @@ public class Role implements Serializable {
 
 	public void setAuthority(String authority) {
 		this.authority = authority;
-	}
-
-	public Set<User> getUsuarios() {
-		return usuarios;
 	}
 
 	@Override

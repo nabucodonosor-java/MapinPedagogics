@@ -45,18 +45,18 @@ public class UserService implements UserDetailsService {
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Transactional(readOnly = true)
-	public Page<UserDto> findAllPaged(PageRequest pageRequest, Long roleId, String authority) {
+	public Page<UserDto> findAllPaged(PageRequest pageRequest, Long roleId, String name) {
 		List<Role> roles = (roleId == 0) ? null : Arrays.asList(roleRepository.getOne(roleId));
-		Page<User> page = repository.find(roles, authority, pageRequest);
+		Page<User> page = repository.find(roles, name, pageRequest);
 		repository.find(page.toList());
-		return page.map(x -> new UserDto(x, x.getRoles()));
+		return page.map(x -> new UserDto(x));
 	}
 
 	@Transactional(readOnly = true)
 	public UserDto findById(Long id) {
 		Optional<User> optional = repository.findById(id);
 		User entity = optional.orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado!"));
-		return new UserDto(entity, entity.getRoles());
+		return new UserDto(entity);
 	}
 
 	@Transactional

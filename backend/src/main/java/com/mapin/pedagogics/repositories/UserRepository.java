@@ -18,10 +18,10 @@ public interface UserRepository extends JpaRepository<User, Long>{
 
 	@Query("SELECT DISTINCT obj FROM User obj INNER JOIN obj.roles role WHERE "
 			+ "(COALESCE(:roles) IS NULL OR role IN :roles) AND "
-			+ "(LOWER(obj.authority) LIKE LOWER(CONCAT('%',:authority,'%'))) ")
-	Page<User> find(List<Role> roles, String authority, Pageable pageable);
+			+ "(LOWER(obj.name) LIKE LOWER(CONCAT('%',:name,'%'))) ")
+	Page<User> find(List<Role> roles, String name, Pageable pageable);
 	
-	@Query("SELECT obj FROM User obj JOIN FETCH obj.roles WHERE obj IN :usuarios")
-	List<User> find(List<User> usuarios);
+	@Query("SELECT obj FROM User obj JOIN FETCH obj.roles WHERE obj IN :users")
+	List<User> find(List<User> users);
 
 }

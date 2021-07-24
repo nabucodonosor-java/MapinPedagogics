@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,7 +47,7 @@ public class User implements UserDetails, Serializable {
 	private String email;
 	private String password;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), // ref a classe onde estou
 			inverseJoinColumns = @JoinColumn(name = "role_id")) // ref a classe da associação
 	private Set<Role> roles = new HashSet<>();

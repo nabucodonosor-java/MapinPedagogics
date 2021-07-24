@@ -36,14 +36,14 @@ public class UserController {
 	@GetMapping
 	public ResponseEntity<Page<UserDto>> findAll(
 			@RequestParam(value = "roleId", defaultValue = "0") Long roleId,
-			@RequestParam(value = "authority", defaultValue = "") String authority,
+			@RequestParam(value = "name", defaultValue = "") String name,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(value = "orderBy", defaultValue = "authority") String orderBy) {
+			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy) {
 				
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		Page<UserDto> list = service.findAllPaged(pageRequest, roleId, authority.trim());
+		Page<UserDto> list = service.findAllPaged(pageRequest, roleId, name.trim());
 		
 		return ResponseEntity.ok().body(list);
 

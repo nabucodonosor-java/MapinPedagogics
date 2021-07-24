@@ -2,8 +2,7 @@ package com.mapin.pedagogics.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.constraints.Email;
@@ -11,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.domain.Page;
 
-import com.mapin.pedagogics.entities.Role;
 import com.mapin.pedagogics.entities.User;
 
 public class UserDto implements Serializable {
@@ -29,7 +27,7 @@ public class UserDto implements Serializable {
 	@Email(message = "Digitar email válido!")
 	private String email;
 
-	private List<RoleDto> roles = new ArrayList<>();
+	private Set<RoleDto> roles = new HashSet<>();
 
 	public UserDto() {
 	}
@@ -37,14 +35,10 @@ public class UserDto implements Serializable {
 	public UserDto(User entity) {
 		id = entity.getId();
 		enrollmentDate = entity.getEnrollmentDate();
-		imgUrl = entity.getImgUrl();
+		imgUrl = "https://mapin-pedagogics.s3.sa-east-1.amazonaws.com/user-padrao.png";
 		name = entity.getName();
 		email = entity.getEmail();
-	}
-
-	public UserDto(User entity, Set<Role> roles) {
-		this(entity);
-		roles.forEach(role -> this.getRoles().add(new RoleDto(role)));
+		entity.getRoles().forEach(r -> this.roles.add(new RoleDto(r)));
 	}
 
 	public Long getId() {
@@ -87,7 +81,7 @@ public class UserDto implements Serializable {
 		this.email = email;
 	}
 
-	public List<RoleDto> getRoles() {
+	public Set<RoleDto> getRoles() {
 		return roles;
 	}
 
