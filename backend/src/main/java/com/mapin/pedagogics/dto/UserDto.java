@@ -3,7 +3,6 @@ package com.mapin.pedagogics.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.domain.Page;
 
+import com.mapin.pedagogics.entities.Role;
 import com.mapin.pedagogics.entities.User;
 
 public class UserDto implements Serializable {
@@ -25,13 +25,11 @@ public class UserDto implements Serializable {
 
 	@NotBlank(message = "Campo obrigatório")
 	private String name;
-	
+
 	@Email(message = "Digitar email válido!")
 	private String email;
 
-	private Set<RoleDto> roles = new HashSet<>();
-
-	private List<TestDto> tests = new ArrayList<>();
+	private List<RoleDto> roles = new ArrayList<>();
 
 	public UserDto() {
 	}
@@ -42,7 +40,11 @@ public class UserDto implements Serializable {
 		imgUrl = entity.getImgUrl();
 		name = entity.getName();
 		email = entity.getEmail();
-		entity.getRoles().forEach(r -> this.roles.add(new RoleDto(r)));
+	}
+
+	public UserDto(User entity, Set<Role> roles) {
+		this(entity);
+		roles.forEach(role -> this.getRoles().add(new RoleDto(role)));
 	}
 
 	public Long getId() {
@@ -85,12 +87,8 @@ public class UserDto implements Serializable {
 		this.email = email;
 	}
 
-	public Set<RoleDto> getRoles() {
+	public List<RoleDto> getRoles() {
 		return roles;
-	}
-
-	public List<TestDto> getTests() {
-		return tests;
 	}
 
 	public static Page<UserDto> converter(Page<User> list) {

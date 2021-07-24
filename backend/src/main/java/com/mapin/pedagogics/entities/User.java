@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,10 +30,10 @@ public class User implements UserDetails, Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private LocalDate enrollmentDate = LocalDate.now();
-	
+
 	@Column(columnDefinition = "TEXT")
 	private String imgUrl;
 
@@ -47,11 +46,11 @@ public class User implements UserDetails, Serializable {
 	private String email;
 	private String password;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "tb_user_role", joinColumns = @JoinColumn(name = "user_id"), // ref a classe onde estou
 			inverseJoinColumns = @JoinColumn(name = "role_id")) // ref a classe da associação
 	private Set<Role> roles = new HashSet<>();
-	
+
 	public Long getId() {
 		return id;
 	}

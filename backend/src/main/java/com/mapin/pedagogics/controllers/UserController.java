@@ -23,6 +23,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mapin.pedagogics.dto.UserDto;
 import com.mapin.pedagogics.dto.UserInsertDto;
+import com.mapin.pedagogics.dto.UserUpdateDto;
 import com.mapin.pedagogics.services.UserService;
 
 @RestController
@@ -33,16 +34,19 @@ public class UserController {
 	private UserService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<UserDto>> findAllPaged(
+	public ResponseEntity<Page<UserDto>> findAll(
+			@RequestParam(value = "roleId", defaultValue = "0") Long roleId,
+			@RequestParam(value = "authority", defaultValue = "") String authority,
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
-			@RequestParam(value = "direction", defaultValue = "DESC") String direction,
-			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy) {
-		
+			@RequestParam(value = "direction", defaultValue = "ASC") String direction,
+			@RequestParam(value = "orderBy", defaultValue = "authority") String orderBy) {
+				
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		Page<UserDto> list = service.findAllPaged(pageRequest);
-			
-		return ResponseEntity.ok().body(list);		
+		Page<UserDto> list = service.findAllPaged(pageRequest, roleId, authority.trim());
+		
+		return ResponseEntity.ok().body(list);
+
 	}
 	
 	@GetMapping("/{id}")
@@ -60,7 +64,7 @@ public class UserController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<UserDto> update(@PathVariable Long id, @Valid @RequestBody UserInsertDto dto) {
+	public ResponseEntity<UserDto> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDto dto) {
 		UserDto newDto = service.update(id, dto);
 		return ResponseEntity.ok().body(newDto);
 	}
