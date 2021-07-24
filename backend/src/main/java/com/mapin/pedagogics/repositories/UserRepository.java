@@ -14,7 +14,7 @@ import com.mapin.pedagogics.entities.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 
-	User findByEmail(String name);
+	User findByEmail(String email);
 
 	@Query("SELECT DISTINCT obj FROM User obj INNER JOIN obj.roles role WHERE "
 			+ "(COALESCE(:roles) IS NULL OR role IN :roles) AND "
@@ -23,5 +23,7 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	@Query("SELECT obj FROM User obj JOIN FETCH obj.roles WHERE obj IN :users")
 	List<User> find(List<User> users);
+
+	User findByName(String name);
 
 }

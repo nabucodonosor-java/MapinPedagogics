@@ -14,25 +14,37 @@ import com.mapin.pedagogics.entities.User;
 import com.mapin.pedagogics.repositories.UserRepository;
 
 public class UserInsertValidator implements ConstraintValidator<UserInsertValid, UserInsertDto> {
-	
+
 	@Autowired
 	private UserRepository repository;
-	
+
 	@Override
 	public void initialize(UserInsertValid ann) {
 	}
 
 	@Override
 	public boolean isValid(UserInsertDto dto, ConstraintValidatorContext context) {
-		
+
 		List<FieldMessage> list = new ArrayList<>();
-		
+
 		User user = repository.findByEmail(dto.getEmail());
 		
-		if(user != null) {
+		User entityName = repository.findByName(dto.getName());
+		
+		String dtoName = dto.getName();
+
+		if (user != null) {
 			list.add(new FieldMessage("email", "Email já existe!"));
 		}
 		
+		if (entityName != null && dtoName != null) {
+			if (entityName.getName().equals(dtoName)) {
+				list.add(new FieldMessage("name", "Nome já existe!"));
+			}
+		}
+		
+		
+
 		for (FieldMessage e : list) {
 			context.disableDefaultConstraintViolation();
 			context.buildConstraintViolationWithTemplate(e.getMessage()).addPropertyNode(e.getFieldName())
