@@ -30,8 +30,6 @@ public class UserInsertDto implements Serializable {
 
 	private Set<RoleDto> roles = new HashSet<>();
 	
-	RoleDto roleDto = new RoleDto(1L, "ROLE_STUDENT");
-	
 	public UserInsertDto() {
 	}
 
@@ -42,7 +40,7 @@ public class UserInsertDto implements Serializable {
 		name = entity.getName();
 		email = entity.getEmail();
 		password = entity.getPassword();
-		this.roles.add(roleDto);
+		entity.getRoles().forEach(r -> this.getRoles().add(new RoleDto(r)));
 	}
 
 	public String getPassword() {
@@ -93,8 +91,8 @@ public class UserInsertDto implements Serializable {
 		this.email = email;
 	}
 
-	public RoleDto getRoleDto() {
-		return roleDto;
+	public Set<RoleDto> getRoles() {
+		return roles;
 	}
 
 }

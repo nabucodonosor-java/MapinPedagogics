@@ -2,10 +2,8 @@ package com.mapin.pedagogics.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.checkerframework.common.aliasing.qual.Unique;
@@ -55,16 +52,6 @@ public class User implements UserDetails, Serializable {
 			inverseJoinColumns = @JoinColumn(name = "role_id")) // ref a classe da associação
 	private Set<Role> roles = new HashSet<>();
 	
-	@OneToMany(mappedBy = "student")
-	private List<Notification> notifications = new ArrayList<>();
-	
-	@ManyToMany
-	@JoinTable(name = "tb_student_study_class", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "study_class_id"))
-	private Set<StudyClass> studyClasses = new HashSet<>();
-	
-	@OneToMany(mappedBy = "student")
-	private List<Test> tests = new ArrayList<>();
-
 	public Long getId() {
 		return id;
 	}
@@ -115,18 +102,6 @@ public class User implements UserDetails, Serializable {
 
 	public Set<Role> getRoles() {
 		return roles;
-	}
-
-	public List<Notification> getNotifications() {
-		return notifications;
-	}
-
-	public Set<StudyClass> getStudyClasses() {
-		return studyClasses;
-	}
-	
-	public List<Test> getTests() {
-		return tests;
 	}
 
 	@Override

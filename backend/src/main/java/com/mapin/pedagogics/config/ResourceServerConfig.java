@@ -29,13 +29,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Autowired
 	private JwtTokenStore tokenStore;
 	
-	private static final String[] PUBLIC = { "/oauth/token", "/h2-console/**" };
+	private static final String[] PUBLIC = { "/oauth/token", "/h2-console/**", "/users/**" };
 	
 	private static final String[] STUDENT_OR_INSTRUCTOR = { "/classes/**", "/tests/**", "/notifications/**", "/topics/**", "/trails/**", "/comments/**"  };
 	
 	private static final String[] INSTRUCTOR = { "/questions/**", "/questions-types/**"  };
 	
-	private static final String[] ADMIN = { "/users/**", "/teachers/**" };
+	private static final String[] ADMIN = { "/teachers/**" };
 	
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {

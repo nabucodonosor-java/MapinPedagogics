@@ -40,18 +40,18 @@ INSERT INTO tb_topic (img_Topic_Url, title, description, subject_id) VALUES
 ('https://mapin-pedagogics.s3.sa-east-1.amazonaws.com/logo-java.png', 'Java Orientação a Objetos', 
 'Comentário 01 Teste teste teste teste', 1);
 
-
-
 INSERT INTO tb_study_class (publication_Date, title, subtitle, video_Url, video_Time, finished, description, subject_id, topic_id) VALUES 
 (TIMESTAMP WITH TIME ZONE '2020-09-20T03:00:00Z', 'Conhecendo o Java', 'Nesta aula conheceremos a linguagem Java. O que é JRE, JVM e JDK?',
 'https://mapin-pedagogics.s3.sa-east-1.amazonaws.com/Instalando+Java.mp4', 5, true, 'Comentário 01 Teste teste teste teste', 1, 1);
 
+INSERT INTO tb_comment (publication_Date, comment, study_class_id, student_id) VALUES 
+(TIMESTAMP WITH TIME ZONE '2020-09-20T03:00:00Z', 'Aluno Teste - Comentário 01 Teste teste teste teste testett teste', 1, 1);
 
+INSERT INTO tb_comment (publication_Date, comment, study_class_id, student_id) VALUES 
+(TIMESTAMP WITH TIME ZONE '2020-09-20T03:00:00Z', 'Professor Teste - Comentário 01 Professor teste teste teste testett teste', 1, 2);
 
+INSERT INTO tb_comment (publication_Date, comment, study_class_id, student_id) VALUES 
+(TIMESTAMP WITH TIME ZONE '2020-09-20T03:00:00Z', 'Admin Teste - Comentário 01 Admin teste teste teste testett teste', 1, 3);
 
-
-
-
-INSERT INTO tb_student_study_class (student_id, study_class_id) VALUES (1, 1);
-INSERT INTO tb_student_study_class (student_id, study_class_id) VALUES (2, 1);
-INSERT INTO tb_student_study_class (student_id, study_class_id) VALUES (3, 1);
+INSERT INTO tb_notification (publication_Date, message, read, student_id) VALUES 
+(TIMESTAMP WITH TIME ZONE '2020-09-20T03:00:00Z', 'Aluno Teste - Comentário 01 Teste teste teste teste testett teste', false, 1);

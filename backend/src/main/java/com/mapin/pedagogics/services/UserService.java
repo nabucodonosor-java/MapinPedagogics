@@ -17,9 +17,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mapin.pedagogics.dto.RoleDto;
 import com.mapin.pedagogics.dto.UserDto;
 import com.mapin.pedagogics.dto.UserInsertDto;
+import com.mapin.pedagogics.entities.Role;
 import com.mapin.pedagogics.entities.User;
+import com.mapin.pedagogics.repositories.RoleRepository;
 import com.mapin.pedagogics.repositories.UserRepository;
 import com.mapin.pedagogics.services.exceptions.DatabaseException;
 import com.mapin.pedagogics.services.exceptions.ResourceNotFoundException;
@@ -31,6 +34,9 @@ public class UserService implements UserDetailsService {
 	
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -86,6 +92,14 @@ public class UserService implements UserDetailsService {
 		entity.setName(dto.getName());
 		entity.setEmail(dto.getEmail());
 		entity.setPassword(dto.getPassword());
+		
+		entity.getRoles().clear();
+		
+		for (RoleDto roles : dto.getRoles()) {
+			Role role = roleRepository.getOne(roles.getId());
+			entity.getRoles().add(role);
+		}
+		
 	}
 
 	@Override

@@ -31,10 +31,6 @@ public class UserDto implements Serializable {
 
 	private Set<RoleDto> roles = new HashSet<>();
 
-	private List<NotificationDto> notifications = new ArrayList<>();
-
-	private Set<StudyClassDto> studyClasses = new HashSet<>();
-
 	private List<TestDto> tests = new ArrayList<>();
 
 	public UserDto() {
@@ -47,9 +43,6 @@ public class UserDto implements Serializable {
 		name = entity.getName();
 		email = entity.getEmail();
 		entity.getRoles().forEach(r -> this.roles.add(new RoleDto(r)));
-		entity.getNotifications().forEach(n -> this.notifications.add(new NotificationDto(n)));
-		entity.getStudyClasses().forEach(s -> this.studyClasses.add(new StudyClassDto(s)));
-		entity.getTests().forEach(t -> this.tests.add(new TestDto(t)));
 	}
 
 	public Long getId() {
@@ -94,14 +87,6 @@ public class UserDto implements Serializable {
 
 	public Set<RoleDto> getRoles() {
 		return roles;
-	}
-
-	public List<NotificationDto> getNotifications() {
-		return notifications;
-	}
-
-	public Set<StudyClassDto> getStudyClasses() {
-		return studyClasses;
 	}
 
 	public List<TestDto> getTests() {
