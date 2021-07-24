@@ -1,5 +1,6 @@
 package com.mapin.pedagogics.services;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mapin.pedagogics.dto.RoleDto;
 import com.mapin.pedagogics.dto.UserDto;
 import com.mapin.pedagogics.dto.UserInsertDto;
 import com.mapin.pedagogics.dto.UserUpdateDto;
@@ -93,18 +93,28 @@ public class UserService implements UserDetailsService {
 	}
 
 	private void copyDtoToEntity(UserDto dto, User entity) {
-		entity.setImgUrl(dto.getImgUrl());
+
+		if (entity.getImgUrl() == null) {
+			entity.setImgUrl("https://mapin-pedagogics.s3.sa-east-1.amazonaws.com/user-padrao.png");
+		} else {
+			entity.setImgUrl(dto.getImgUrl());
+		}
+
+		if (entity.getEnrollmentDate() == null) {
+			entity.setEnrollmentDate(LocalDate.now());
+		}
+
 		entity.setName(dto.getName());
 		entity.setEmail(dto.getEmail());
 
 		entity.getRoles().clear();
-		
+
 		entity.getRoles().add(new Role(1L, "ROLE_STUDENT"));
 
-		/* for (RoleDto roles : dto.getRoles()) {
-			Role role = roleRepository.getOne(roles.getId());
-			entity.getRoles().add(role);
-		}*/
+		/*
+		 * for (RoleDto roles : dto.getRoles()) { Role role =
+		 * roleRepository.getOne(roles.getId()); entity.getRoles().add(role); }
+		 */
 
 	}
 

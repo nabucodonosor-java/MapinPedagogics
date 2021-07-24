@@ -35,7 +35,7 @@ public class UserDto implements Serializable {
 	public UserDto(User entity) {
 		id = entity.getId();
 		enrollmentDate = entity.getEnrollmentDate();
-		imgUrl = "https://mapin-pedagogics.s3.sa-east-1.amazonaws.com/user-padrao.png";
+		imgUrl = entity.getImgUrl();
 		name = entity.getName();
 		email = entity.getEmail();
 		entity.getRoles().forEach(r -> this.roles.add(new RoleDto(r)));
