@@ -18,7 +18,7 @@ const Home = () => (
                         clientes a cada dia. </p>
 
                     <div className="home-user-register">
-                        <Link to="/users" className="btn-search">
+                        <Link to="/users/new" className="btn-search">
                             <ButtonIcon text="cadastre-se" />
                         </Link>
                     </div>
