@@ -16,6 +16,7 @@ import com.mapin.pedagogics.dto.NotificationDto;
 import com.mapin.pedagogics.entities.Notification;
 import com.mapin.pedagogics.entities.User;
 import com.mapin.pedagogics.repositories.NotificationRepository;
+import com.mapin.pedagogics.repositories.UserRepository;
 import com.mapin.pedagogics.services.exceptions.DatabaseException;
 import com.mapin.pedagogics.services.exceptions.ResourceNotFoundException;
 
@@ -24,6 +25,9 @@ public class NotificationService {
 	
 	@Autowired
 	private NotificationRepository repository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Autowired
 	private AuthService authService;
@@ -73,6 +77,8 @@ public class NotificationService {
 
 	private void copyDtoToEntity(NotificationDto dto, Notification entity) {
 		
+		User user = userRepository.getOne(dto.getUserId());
+		
 		if (entity.getPublicationDate() == null) {
 			entity.setPublicationDate(LocalDate.now());
 		}
@@ -81,7 +87,7 @@ public class NotificationService {
 		
 		entity.setMessage(dto.getMessage());
 		
-		entity.setUser(new User(dto.getUser()));
+		entity.setUser(user);
 	}
 
 }

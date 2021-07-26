@@ -11,14 +11,14 @@ import com.mapin.pedagogics.entities.Notification;
 
 public class NotificationDto implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 	private LocalDate publicationDate;
-	
+
 	@NotBlank(message = "Campo obrigatório")
 	private String message;
 	private boolean read;
-	private UserDto user;
+	private Long userId;
 
 	public NotificationDto() {
 	}
@@ -28,7 +28,7 @@ public class NotificationDto implements Serializable {
 		publicationDate = LocalDate.now();
 		message = entity.getMessage();
 		read = entity.isRead();
-		user = new UserDto(entity.getUser());
+		userId = entity.getUser().getId();
 	}
 
 	public Long getId() {
@@ -63,12 +63,12 @@ public class NotificationDto implements Serializable {
 		this.read = read;
 	}
 
-	public UserDto getUser() {
-		return user;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUser(UserDto user) {
-		this.user = user;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public static Page<NotificationDto> converter(Page<Notification> page) {
