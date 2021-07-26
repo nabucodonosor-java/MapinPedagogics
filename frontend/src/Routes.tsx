@@ -1,14 +1,7 @@
 import React from 'react';
 import { Router, Switch, Route, Redirect  } from 'react-router-dom';
 import Navbar from './core/components/Navbar';
-import Home from './pages/Home';
-import Catalog from './pages/Catalog';
-import MedicoDetails from 'pages/Catalog/components/MedicoDetails';
-import Auth from 'pages/Auth';
-import Admin from './pages/Admin';
-import Report from './pages/Report';
 import history from './core/utils/history';
-import DashBoard from 'pages/DashBoard';
 
 const Routes = () => (
     <Router history={history}>
@@ -17,25 +10,17 @@ const Routes = () => (
             <Route path="/" exact>
                 <Home />
             </Route>
-            <Route path="/medicos"  exact>
-                <Catalog />
+            <Route path="/users">
+                <User />
             </Route>
-            <Route path="/medicos/:medicoId">
-                <MedicoDetails />
+            <Route path="/users/:userId">
+                <UserDetails />
             </Route>
             <Redirect from="/auth" to="/auth/login" exact/>
             <Route path="/auth">
                 <Auth />
             </Route>
-            <Redirect from="/report" to="/report/medicos" exact/>
-            <Route path="/report">
-                <Report />
-            </Route>
-            <Redirect from="/dashboard" to="/dashboard/servicos" exact/>
-            <Route path="/dashboard">
-                <DashBoard />
-            </Route>
-            <Redirect from="/admin" to="/admin/medicos" exact/>
+            <Redirect from="/admin" to="/admin/subjects" exact/>
             <Route path="/admin">
                 <Admin />
             </Route>

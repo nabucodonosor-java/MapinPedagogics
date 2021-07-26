@@ -57,7 +57,7 @@ export const isAuthenticated = () => {
     return sessionData.access_token && isTokenValid();
 }
 
-export const isAllowedByRole = (routeRoles: Role[] = []) => {
+export const isAllowebByRole = (routeRoles: Role[] = []) => {
     if (routeRoles.length === 0) {
         return true;
     }
