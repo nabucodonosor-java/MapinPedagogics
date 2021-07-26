@@ -77,11 +77,7 @@ public class NotificationService {
 			entity.setPublicationDate(LocalDate.now());
 		}
 		
-		if (entity.isRead()) {
-			entity.setRead(false);
-		} else {
-			entity.setRead(true);
-		}
+		entity.setRead(dto.isRead());
 		
 		entity.setMessage(dto.getMessage());
 		
