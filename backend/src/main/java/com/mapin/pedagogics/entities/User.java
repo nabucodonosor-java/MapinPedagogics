@@ -26,6 +26,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.mapin.pedagogics.dto.UserDto;
+
 @Entity
 @Table(name = "tb_user")
 public class User implements UserDetails, Serializable {
@@ -57,6 +59,16 @@ public class User implements UserDetails, Serializable {
 	
 	@OneToMany(mappedBy = "user")
 	private List<Notification> notifications = new ArrayList<>();
+	
+	public User() {}
+
+	public User(UserDto entity) {
+		id = entity.getId();
+		enrollmentDate = entity.getEnrollmentDate();
+		imgUrl = entity.getImgUrl();
+		name = entity.getName();
+		email = entity.getEmail();
+	}
 
 	public Long getId() {
 		return id;
