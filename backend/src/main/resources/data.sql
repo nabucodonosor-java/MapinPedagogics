@@ -53,5 +53,14 @@ INSERT INTO tb_comment (publication_Date, comment, study_class_id, student_id) V
 INSERT INTO tb_comment (publication_Date, comment, study_class_id, student_id) VALUES 
 (TIMESTAMP WITH TIME ZONE '2020-09-20T03:00:00Z', 'Admin Teste - Comentário 01 Admin teste teste teste testett teste', 1, 3);
 
-INSERT INTO tb_notification (publication_Date, message, read, student_id) VALUES 
+INSERT INTO tb_notification (publication_Date, message, read, user_id) VALUES 
 (TIMESTAMP WITH TIME ZONE '2020-09-20T03:00:00Z', 'Aluno Teste - Comentário 01 Teste teste teste teste testett teste', false, 1);
+
+INSERT INTO tb_notification (publication_Date, message, read, user_id) VALUES 
+(TIMESTAMP WITH TIME ZONE '2020-08-10T03:00:00Z', 'Aluno Teste - Comentário 02 Teste teste teste teste testett teste', true, 1);
+
+INSERT INTO tb_notification (publication_Date, message, read, user_id) VALUES 
+(TIMESTAMP WITH TIME ZONE '2020-07-20T03:00:00Z', 'Aluno Teste - Comentário 01 Teste teste teste teste testett teste', false, 1);
+
+INSERT INTO tb_notification (publication_Date, message, read, user_id) VALUES 
+(TIMESTAMP WITH TIME ZONE '2020-06-10T03:00:00Z', 'Aluno Teste - Comentário 02 Teste teste teste teste testett teste', true, 1);

@@ -30,8 +30,8 @@ public class Notification implements Serializable {
 	private boolean read = false;
 
 	@ManyToOne
-	@JoinColumn(name = "student_id")
-	private User student;
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public Long getId() {
 		return id;
@@ -65,12 +65,12 @@ public class Notification implements Serializable {
 		this.read = read;
 	}
 
-	public User getStudent() {
-		return student;
+	public User getUser() {
+		return user;
 	}
 
-	public void setStudent(User student) {
-		this.student = student;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
@@ -97,5 +97,4 @@ public class Notification implements Serializable {
 			return false;
 		return true;
 	}
-
 }

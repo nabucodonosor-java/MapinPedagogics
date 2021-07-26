@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.data.domain.Page;
+
 import com.mapin.pedagogics.entities.Notification;
 
 public class NotificationDto implements Serializable {
@@ -16,7 +18,7 @@ public class NotificationDto implements Serializable {
 	@NotBlank(message = "Campo obrigatório")
 	private String message;
 	private boolean read;
-	private UserDto student;
+	private UserDto user;
 
 	public NotificationDto() {
 	}
@@ -26,7 +28,7 @@ public class NotificationDto implements Serializable {
 		publicationDate = LocalDate.now();
 		message = entity.getMessage();
 		read = entity.isRead();
-		student = new UserDto(entity.getStudent());
+		user = new UserDto(entity.getUser());
 	}
 
 	public Long getId() {
@@ -61,12 +63,16 @@ public class NotificationDto implements Serializable {
 		this.read = read;
 	}
 
-	public UserDto getStudent() {
-		return student;
+	public UserDto getUser() {
+		return user;
 	}
 
-	public void setStudent(UserDto student) {
-		this.student = student;
+	public void setUser(UserDto user) {
+		this.user = user;
+	}
+
+	public static Page<NotificationDto> converter(Page<Notification> page) {
+		return page.map(NotificationDto::new);
 	}
 
 }
