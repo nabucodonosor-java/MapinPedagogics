@@ -1,7 +1,8 @@
 const User = () => {
 
+
     return (
-        <h1>User Dashboard</h1>
+        <h1>USER DASHBOARD</h1>
     );
 }
 

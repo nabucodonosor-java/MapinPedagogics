@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthImage from 'core/assets/images/img-login.jpg';
+import AuthImage from 'core/assets/images/img-login.jpeg';
 import { Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
 import './styles.scss';

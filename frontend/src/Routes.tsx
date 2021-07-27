@@ -14,7 +14,7 @@ const Routes = () => (
             <Route path="/" exact>
                 <Home />
             </Route>
-            <Route path="/users/new">
+            <Route path="/users/new" exact>
                 <UserRegister />
             </Route>
             <Route path="/users/:userId">
@@ -23,10 +23,6 @@ const Routes = () => (
             <Redirect from="/auth" to="/auth/login" exact/>
             <Route path="/auth">
                 <Auth />
-            </Route>
-            <Redirect from="/admin" to="/admin/subjects" exact/>
-            <Route path="/admin">
-                <Admin />
             </Route>
         </Switch>
     </Router>

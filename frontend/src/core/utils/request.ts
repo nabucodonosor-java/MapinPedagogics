@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
 import qs from 'qs';
-import { parseClassName } from "react-toastify/dist/utils";
 import { CLIENT_ID, CLIENT_SECRET, getSessionData, logout } from "./auth";
 
 type LoginData = {
@@ -35,7 +34,7 @@ export const makePrivateRequest = (params: AxiosRequestConfig) => {
         'Authorization': `Bearer ${sessionData.access_token}`
     }
 
-    return makeRequest({ ...parseClassName, headers });
+    return makeRequest({ ...params, headers });
 }
 
 export const makeLogin = (loginData: LoginData) => {
