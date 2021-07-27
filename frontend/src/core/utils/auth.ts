@@ -18,7 +18,7 @@ export type Role = 'ROLE_STUDENT' | 'ROLE_INSTRUCTOR' | 'ROLE_ADMIN';
 type AccessToken = {
     exp: number;
     user_name: string;
-    authorities: Role[];    
+    authorities: Role[];  
 }
 
 export const saveSessionData = (loginResponse: LoginResponse) => {

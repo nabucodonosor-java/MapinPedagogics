@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAccessTokenDecoded, logout, isAllowebByRole } from 'core/utils/auth';
+import { getAccessTokenDecoded, logout, isAllowebByRole, getSessionData } from 'core/utils/auth';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import menu from 'core/assets/images/menu-icon.svg';
 import logo from 'core/assets/images/navbar-logo.jpg';
@@ -8,6 +8,7 @@ import './styles.scss';
 const Navbar = () => {
     const [drawerActive, setDrawerActive] = useState(false);
     const [currentUser, setCurrentUser] = useState('');
+    const [currentUserId, setCurrentUserId] = useState<number>();
     const location = useLocation();
 
     const handleLogout = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -18,6 +19,11 @@ const Navbar = () => {
     useEffect(() => {
         const currentUserData = getAccessTokenDecoded();
         setCurrentUser(currentUserData.user_name);
+    }, [location]);
+
+    useEffect(() => {
+        const currentUserIdData = getSessionData();
+        setCurrentUserId(currentUserIdData.userId);
     }, [location]);
     
     return (
@@ -40,7 +46,7 @@ const Navbar = () => {
                     <NavLink onClick={() => setDrawerActive(false)} className="navbar-link" to="/" activeClassName="active" exact>HOME</NavLink>
                     </li>
                     <li>
-                    <NavLink onClick={() => setDrawerActive(false)} className="navbar-link" to="/medicos" activeClassName="active" exact>DISCIPLINAS</NavLink>
+                    <NavLink onClick={() => setDrawerActive(false)} className="navbar-link" to={`/users/${currentUserId}`} activeClassName="active" exact>DISCIPLINAS</NavLink>
                     </li>
 
                     {isAllowebByRole(['ROLE_INSTRUCTOR']) && (
