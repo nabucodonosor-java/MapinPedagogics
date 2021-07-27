@@ -46,7 +46,7 @@ const Navbar = () => {
                     <NavLink onClick={() => setDrawerActive(false)} className="navbar-link" to="/" activeClassName="active" exact>HOME</NavLink>
                     </li>
                     <li>
-                    <NavLink onClick={() => setDrawerActive(false)} className="navbar-link" to={`/users/${currentUserId}`} activeClassName="active" exact>DISCIPLINAS</NavLink>
+                    <NavLink onClick={() => setDrawerActive(false)} className="navbar-link" to={`/users/${currentUserId}`} activeClassName="active" exact>DASHBOARD</NavLink>
                     </li>
 
                     {isAllowebByRole(['ROLE_INSTRUCTOR']) && (

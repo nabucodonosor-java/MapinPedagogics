@@ -1,0 +1,32 @@
+.user-publication {
+    width: 950px;
+    padding: 20px 20px 0px 20px;
+    margin-right: 10px; 
+}
+
+.div-img-publication {
+    display: flex;
+    justify-content: center;
+}
+
+.img-publication {
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+.div-comment {
+    // padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-user-comment {
+    max-width: 70px;
+    margin-right: 10px;
+}
+
+.text-comment {
+    font-size: 10px;
+    
+}
